@@ -6,6 +6,8 @@ import tes.dev.waste_microservice.domain.model.WasteManagerEntity;
 
 @Repository
 public interface WasteManagerRepository extends JpaRepository<WasteManagerEntity, Long> {
+    WasteManagerEntity findByNifEqualsAndIdIsNot(String nif, Long id);
 
+    WasteManagerEntity findByNifEquals(String nif);
 
 }
