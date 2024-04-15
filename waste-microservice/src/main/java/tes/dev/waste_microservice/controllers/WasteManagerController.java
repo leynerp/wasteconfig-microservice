@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import tes.dev.waste_microservice.dto.WasteManagerDto;
+import tes.dev.waste_microservice.dto.WasteManagerDtoRequest;
 import tes.dev.waste_microservice.services.WasteManagerService;
 
 @RestController
@@ -20,12 +20,12 @@ public class WasteManagerController {
     WasteManagerService wasteManagerService;
 
     @PostMapping
-    public ResponseEntity insertWasteManager(@RequestBody @Valid WasteManagerDto wasteManagerDto, BindingResult bindingResult) {
+    public ResponseEntity insertWasteManager(@RequestBody @Valid WasteManagerDtoRequest wasteManagerDto, BindingResult bindingResult) {
         return wasteManagerService.create(wasteManagerDto, bindingResult);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateWasteManager(@RequestBody @Valid WasteManagerDto wasteManagerDto, @PathVariable("id") Long id, BindingResult bindingResult) {
+    public ResponseEntity updateWasteManager(@RequestBody @Valid WasteManagerDtoRequest wasteManagerDto, @PathVariable("id") Long id, BindingResult bindingResult) {
         return wasteManagerService.update(wasteManagerDto, id, bindingResult);
 
     }

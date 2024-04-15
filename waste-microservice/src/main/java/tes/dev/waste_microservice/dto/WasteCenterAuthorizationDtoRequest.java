@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class WasteCenterAuthorizationDto {
+public class WasteCenterAuthorizationDtoRequest {
     String number;
 }

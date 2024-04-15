@@ -12,19 +12,13 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-public class WasteManagerDto {
-    @NotNull
-    @NotBlank
+public class WasteManagerDtoResponse {
+    Long id;
     String name;
-    @NotNull
-    @NotBlank
     String nif;
     Boolean active;
-    @NotNull
-    @NotBlank
+    Long idAddress;
     String address;
-    @NotNull
-    @NotEmpty
-    List<WasteCenterAuthorizationDto> listWasteCenterAuthorization;
+    List<WasteCenterAuthorizationDtoResponse> listWasteCenterAuthorizationResponse;
 
 }

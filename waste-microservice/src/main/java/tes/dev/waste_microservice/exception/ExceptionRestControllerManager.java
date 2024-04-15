@@ -13,9 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 import tes.dev.waste_microservice.config.ExceptionResponse;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice(annotations = RestController.class)
 public class ExceptionRestControllerManager {

@@ -12,7 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import tes.dev.waste_microservice.config.MessageResponse;
 import tes.dev.waste_microservice.domain.repository.WasteManagerRepository;
-import tes.dev.waste_microservice.dto.WasteManagerDto;
+import tes.dev.waste_microservice.dto.WasteManagerDtoRequest;
+import tes.dev.waste_microservice.dto.WasteManagerDtoResponse;
 import tes.dev.waste_microservice.exception.ResourceNotFoundException;
 import tes.dev.waste_microservice.mapper.WasteMapper;
 
@@ -37,7 +38,7 @@ public class WasteManagerService {
     }
 
     @Transactional
-    public ResponseEntity create(WasteManagerDto wasteManagerDto, BindingResult bindingResult) {
+    public ResponseEntity create(WasteManagerDtoRequest wasteManagerDto, BindingResult bindingResult) {
         var searchWaste = wasteManagerRepository.findByNifEquals(wasteManagerDto.getNif());
         if (searchWaste != null) {
             bindingResult.rejectValue("nif", "", "Exist a waste witch this nif ");
@@ -58,7 +59,7 @@ public class WasteManagerService {
     ;
 
     @Transactional
-    public ResponseEntity update(WasteManagerDto wasteManagerDto, Long id, BindingResult bindingResult) {
+    public ResponseEntity update(WasteManagerDtoRequest wasteManagerDto, Long id, BindingResult bindingResult) {
 
         var wasteUpdate = wasteManagerRepository.findById(id)
                 .orElseThrow(() -> {
@@ -97,13 +98,13 @@ public class WasteManagerService {
                 .orElseThrow(() -> {
                     throw new ResourceNotFoundException("Waste", "id", wasteManagerId.toString());
                 });
-        WasteManagerDto wasteManagerDto = mapperWaste.wasteManagerEntityToWasteManagerDto(wasteFound);
+        WasteManagerDtoResponse wasteManagerDto = mapperWaste.wasteManagerEntityToWasteManagerDtoResponse(wasteFound);
         return ResponseEntity.status(HttpStatus.OK).body(wasteManagerDto);
     }
 
     public ResponseEntity findAll(Pageable pageable) {
         var pagewasteManager = wasteManagerRepository.findAll(pageable);
-        Page<WasteManagerDto> wasteManagerDtoPage = pagewasteManager.map(wasteManagerEntity -> mapperWaste.wasteManagerEntityToWasteManagerDto(wasteManagerEntity));
+        Page<WasteManagerDtoResponse> wasteManagerDtoPage = pagewasteManager.map(wasteManagerEntity -> mapperWaste.wasteManagerEntityToWasteManagerDtoResponse(wasteManagerEntity));
         if (wasteManagerDtoPage.getContent().size() != 0)
             return ResponseEntity.status(HttpStatus.OK).body(wasteManagerDtoPage);
         else return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("200", "there is no data to show"));
