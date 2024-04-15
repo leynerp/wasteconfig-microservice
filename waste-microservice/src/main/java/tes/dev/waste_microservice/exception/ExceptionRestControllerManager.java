@@ -1,5 +1,6 @@
 package tes.dev.waste_microservice.exception;
 
+import jakarta.validation.ConstraintViolationException;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,9 @@ import org.springframework.web.context.request.WebRequest;
 import tes.dev.waste_microservice.config.ExceptionResponse;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice(annotations = RestController.class)
 public class ExceptionRestControllerManager {
@@ -31,6 +34,21 @@ public class ExceptionRestControllerManager {
             String value = error.getDefaultMessage();
             errorsMap.put(key, value);
         });
+        ExceptionResponse exceptionResponse = new ExceptionResponse(errorsMap.toString(), webRequest.getDescription(false));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exceptionResponse);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Object> handlerConstraintViolationException(ConstraintViolationException ex, WebRequest webRequest) {
+        Map<String, String> errorsMap = new HashMap<>();
+       ex.getConstraintViolations()
+                .stream()
+                .forEach(constraintViolation -> {
+                    int  lastIndex = constraintViolation.getPropertyPath().toString().lastIndexOf(".");
+                    String key = constraintViolation.getPropertyPath().toString().substring(lastIndex + 1);
+                    String value = constraintViolation.getMessage();
+                    errorsMap.put(key, value);
+                });
         ExceptionResponse exceptionResponse = new ExceptionResponse(errorsMap.toString(), webRequest.getDescription(false));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exceptionResponse);
     }
