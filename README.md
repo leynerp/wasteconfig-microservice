@@ -1,0 +1,1 @@
+# wasteconfig-microservice
