@@ -23,6 +23,8 @@
 	<modules>
 		<module>waste-microservice</module>
 		<module>cloud-config</module>
+		<module>api-gateway</module>
+		<module>discovery-service</module>
 
 	</modules>
 
