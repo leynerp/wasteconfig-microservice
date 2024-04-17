@@ -10,7 +10,7 @@ Con el objetivo de poder fundamentar las decisiones tomadas durante la implement
 
 1-Capa de DATOS.
 
-Del argumento pasmado en la prueba técnica se infiere el modelo de la *Fig.2,* donde se evidencia lo siguiente
+Del argumento plasmado en la prueba técnica se infiere el modelo de la *Fig.2,* donde se evidencia lo siguiente
 
 - Relación de 1..1 entre waste\_manager y waste\_manager\_address, esta última tabla se caracteriza como una entidad débil , lo que significa que no almacena ningún registro que no esté relacionado con la tabla padre, y una eliminación en la tabla padre elimina su registro. 
 
@@ -118,6 +118,8 @@ Se considera que se cumplió con los objetivos propuestos la prueba técnica y s
 
 Se recomienda:
 
-- Realizar las pruebas correspondientes al códico, utilizando Junit y 
+- Realizar las pruebas correspondientes al códico, utilizando Junit y Mockito. 
 
-- Mockito.Implementar las acciones de seguridad mencionadas anteriormente.
+- Implementar las acciones de seguridad mencionadas anteriormente.
+
+- Finalmente agregar algunas herramientas de observabilidad, monitoreo y supervisión como Grafana, Micrometer, Prometheus, Zipkin. 
