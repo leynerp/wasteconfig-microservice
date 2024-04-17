@@ -21,9 +21,9 @@ Del argumento plasmado en la prueba técnica se infiere el modelo de la *Fig.2,*
 
 *Fig2. Modelo de datos*
 
-2-Capa de DATOS.
+2-Capa de Acceso a DATOS.
 
-En la capa de Acceso a Datos se establecieron las relaciones entre entidades según lo explicado en al modelo de datos anterior haciendo uso de las anotaciones correspondiente. Aquí importante señalar lo siguiente:
+En la capa de Acceso a Datos se establecieron las relaciones entre entidades según lo explicado en el modelo de datos anterior, haciendo uso de las anotaciones correspondiente. Aquí importante señalar lo siguiente:
 
 - Se cambió la forma de establecer el valor por defecto a la variable **isEnabled** esto se hace con el objetivo de que cuando se genera la BD el campo se genere también con un valor por defecto.
 
@@ -46,9 +46,7 @@ private Boolean isEnabled
 
 En esta capa se implementaron los dos servicios solicitados y la relación de uso entre ellos, a continuación, algunos detalles de interés con respecto a las decisiones tomadas:
 
-- Se hizo uso del patrón de diseño DTO, con el objetivo de enviar y recibir los datos, cumpliendo con el requerimiento de que *parte de los campos* 
-
-  *utilizados para la creación del objeto no son de interés para un usuario final*. 
+- Se hizo uso del patrón de diseño DTO, con el objetivo de enviar y recibir los datos, cumpliendo con el requerimiento de que *parte de los campos utilizados para la creación del objeto no son de interés para un usuario final*. 
 
 - Para el mapeo entre objetos de Entidades y DTO se utilizó la librería **mapstruct.**
 
@@ -56,12 +54,12 @@ En esta capa se implementaron los dos servicios solicitados y la relación de us
 
 - Se implemento además el método de **deleteAddressFromWaste** con el objetivo de poder eliminar la dirección de un WasteManager.
 
-- Se implementó el método **findAll** para recuperar los datos insertados , se le agregó paginación correspondiente.
+- Se implementó el método **findAll** para recuperar los datos insertados , se le agregó la paginación correspondiente.
 
 
 3-Capa de CONTROLADORES.
 
-En esta capa de implementó el Rescontroller para los endpoints de nuestra api, haciendo uso de los verbos HTTP en cada Caso. Se hizo uso de la anotación @Validated para habilitar la validación de los campos de los DTO.  
+En esta capa se implementó el Restcontroller para los endpoints de nuestra api, haciendo uso de los verbos HTTP en cada caso. Se hizo uso de la anotación @Validated para habilitar la validación de los campos de los DTO.  
 
 **Tratamiento de Errores.**
 
@@ -72,15 +70,15 @@ El tratamiento de errores se llevo a cabo por medio del control de excepciones u
 
 En la figura 3 se ilustra cómo se organizó la solución para cumplir con los objetivos especificados, se puede decir que:
 
-- Se creó el MS Cloud-config-server para gestionar todas las configuraciones centralizada mente, integrándose a un repositorio público de GitHub.
+- Se creó el MS Cloud-config-server para gestionar todas las configuraciones de forma centralizadas, integrándose a un repositorio público de GitHub.
 
 - Un servidor Eureka para el registro y descubrimiento de los MS.
 
 - El servicio Waste- Manager que responde a la lógica del negocio en este caso.
 
-- Se configuró un Api-Gateway como Load Balancer y Enrutador de las peticiones HTTP. Debido a la importancia que reviste la seguridad en sistema de Software se implemento un filtro a este MS que valida un token de seguridad para todas las peticiones.
+- Se configuró un Api-Gateway como Load Balancer y Enrutador de las peticiones HTTP. Debido a la importancia que reviste la seguridad en sistema de Software se implementó un filtro a este MS que valida un token de seguridad para todas las peticiones.
 
-  **Aclarar que por cuestión de tiempo no se llegó a implementar el MS que implementa la seguridad, solo se ilustró como se considera que debía de implementar a futuro. Es por eso que actualmente el filtro del Api Gateway solo validad que exista el token en la petición.  
+  **Aclarar que por cuestión de tiempo no se llegó a implementar el MS que implementa la seguridad, solo se ilustró como se considera que se debía de implementar a futuro. Es por eso que actualmente el filtro del Api Gateway solo valida que exista el token en la petición.  
 
 ![](assets/Aspose.Words.9b4f8f52-21fc-49a4-96df-26565c32e062.003.png)
 *Fig3.Arquitectura de MS*
@@ -88,9 +86,9 @@ En la figura 3 se ilustra cómo se organizó la solución para cumplir con los o
 
 **Despliegue de la aplicación**
 
-Para poder ejecutar la aplicación y probar su funcionamiento se puede realizar dos acciones:
+Para poder ejecutar la aplicación y probar su funcionamiento se pueden realizar dos acciones:
 
-1. **Descargar el código del repositorio y ejecutar cada servicio en el siguiente orden**
+1. **Descargar el código del repositorio y ejecutar cada MS en el siguiente orden**
 
 1. Cloud config server
 1. Eureka
@@ -98,7 +96,7 @@ Para poder ejecutar la aplicación y probar su funcionamiento se puede realizar 
 1. Api Gateway
 
 
-1. **Descargar el código del repositorio la carpeta *deploy* y ejecutar el Docker-compose.**
+1. **Descargar el código del repositorio la carpeta *deploy* y ejecutar el docker compose.**
 
 - \*\*Antes de correr el archivo compose (compose-spring.yml) se debe de crear una carpeta target dentro de la carpeta DockerFile, dentro poner las compilaciones de cada uno de los microservicios, esto se hace ejecutando el comando ***mvn clean package***.
 
@@ -110,9 +108,9 @@ Para poder ejecutar la aplicación y probar su funcionamiento se puede realizar 
 
 ![](assets/Aspose.Words.cf8c3c9c-25ef-4660-b299-fb2ccf48451a.005.png)
 
-**Concusiones**
+**Conclusiones**
 
-Se considera que se cumplió con los objetivos propuestos la prueba técnica y se cumplió con el plazo establecido. 
+Se considera que se cumplió con los objetivos propuestos de la prueba técnica y se cumplió con el plazo establecido. 
 
 **Recomendaciones**
 
