@@ -10,7 +10,7 @@ Con el objetivo de poder fundamentar las decisiones tomadas durante la implement
 
 1-Capa de DATOS.
 
-Del argumento plasmado en la prueba técnica se infiere el modelo de la *Fig.2,* donde se evidencia lo siguiente
+Del argumento plasmado en la prueba técnica se infiere el modelo de la *Fig.2,* donde se evidencia lo siguiente:
 
 - Relación de 1..1 entre waste\_manager y waste\_manager\_address, esta última tabla se caracteriza como una entidad débil , lo que significa que no almacena ningún registro que no esté relacionado con la tabla padre, y una eliminación en la tabla padre elimina su registro. 
 
@@ -23,9 +23,9 @@ Del argumento plasmado en la prueba técnica se infiere el modelo de la *Fig.2,*
 
 2-Capa de Acceso a DATOS.
 
-En la capa de Acceso a Datos se establecieron las relaciones entre entidades según lo explicado en el modelo de datos anterior, haciendo uso de las anotaciones correspondiente. Aquí importante señalar lo siguiente:
+En la capa de Acceso a Datos se establecieron las relaciones entre entidades según lo explicado en el modelo de datos anterior, haciendo uso de las anotaciones correspondientes. Aquí importante señalar lo siguiente:
 
-- Se cambió la forma de establecer el valor por defecto a la variable **isEnabled** esto se hace con el objetivo de que cuando se genera la BD el campo se genere también con un valor por defecto.
+- Se cambió la forma de establecer el valor por defecto a la variable **isEnabled** esto se hace con el objetivo de, que cuando se genera la BD el campo, se genere también con un valor por defecto.
 
 - Antes
 
@@ -44,15 +44,15 @@ private Boolean isEnabled
 
 3-Capa de SERVICIO.
 
-En esta capa se implementaron los dos servicios solicitados y la relación de uso entre ellos, a continuación, algunos detalles de interés con respecto a las decisiones tomadas:
+En esta capa se implementaron los dos servicios solicitados y la relación de uso entre ellos, a continuación algunos detalles de interés con respecto a las decisiones tomadas:
 
 - Se hizo uso del patrón de diseño DTO, con el objetivo de enviar y recibir los datos, cumpliendo con el requerimiento de que *parte de los campos utilizados para la creación del objeto no son de interés para un usuario final*. 
 
 - Para el mapeo entre objetos de Entidades y DTO se utilizó la librería **mapstruct.**
 
-- Según mi experiencia los campos como is\_enabled en la BD se utilizan para deshabilitar o habilitar una fila de una tabla ante un comportamiento determinado (Ejemplo en un sistema de RRHH cuando un trabajador causa baja de una Entidad, no se eliminan sus datos sino que pasa a un estado inactivo), es por eso que se implemento el método de **changeEnabled** en el servicio WasteManager. Generalmente cuando se crea la fila por primera vez si valor es verdadero, por eso el valor por defecto a true.
+- Según mi experiencia los campos como is\_enabled en la BD se utilizan para deshabilitar o habilitar una fila de una tabla ante un comportamiento determinado (Ejemplo en un sistema de RRHH cuando un trabajador causa baja de una Entidad, no se eliminan sus datos sino que pasan a un estado inactivo), es por eso que se implementó el método de **changeEnabled** en el servicio WasteManager. Generalmente cuando se crea la fila por primera vez si valor es verdadero, por eso el valor por defecto a true.
 
-- Se implemento además el método de **deleteAddressFromWaste** con el objetivo de poder eliminar la dirección de un WasteManager.
+- Se implementó además el método de **deleteAddressFromWaste** con el objetivo de poder eliminar la dirección de un WasteManager.
 
 - Se implementó el método **findAll** para recuperar los datos insertados , se le agregó la paginación correspondiente.
 
@@ -63,10 +63,10 @@ En esta capa se implementó el Restcontroller para los endpoints de nuestra api,
 
 **Tratamiento de Errores.**
 
-El tratamiento de errores se llevo a cabo por medio del control de excepciones usando **RestControllerAdvice** , capturándose  excepciones personalizadas y definidas por el sistema, además se usó de **BindingResult**, para la validación del valor del campo **nif.**  
+El tratamiento de errores se llevó a cabo por medio del control de excepciones usando **RestControllerAdvice** , capturándose  excepciones personalizadas y definidas por el sistema, además se usó de **BindingResult**, para la validación del valor del campo **nif.**  
 
 
-**Arquitectura de Micro Servicio**
+**Arquitectura de Micro Servicio.**
 
 En la figura 3 se ilustra cómo se organizó la solución para cumplir con los objetivos especificados, se puede decir que:
 
@@ -81,6 +81,7 @@ En la figura 3 se ilustra cómo se organizó la solución para cumplir con los o
   **Aclarar que por cuestión de tiempo no se llegó a implementar el MS que implementa la seguridad, solo se ilustró como se considera que se debía de implementar a futuro. Es por eso que actualmente el filtro del Api Gateway solo valida que exista el token en la petición.  
 
 ![](assets/Aspose.Words.9b4f8f52-21fc-49a4-96df-26565c32e062.003.png)
+
 *Fig3.Arquitectura de MS*
 
 
