@@ -1,6 +1,6 @@
 ﻿**Prueba técnica para java Backend Developer**
 
-Enunciado de la prueba [aqui](http://example.com/ "Title").
+Enunciado de la prueba [aqui](https://github.com/leynerp/wasteconfig-microservice/blob/master/assets/Prueba%20T%C3%A9cnica%20Abril%202024.pdf "Title").
 
 Con el objetivo de poder fundamentar las decisiones tomadas durante la implementación de la propuesta de solución se propone dividir la explicación de las acciones realizadas en las siguientes capas o elementos de la arquitectura.
 
