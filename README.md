@@ -1,6 +1,6 @@
 ﻿**Prueba técnica para java Backend Developer**
 
-Enunciado de la prueba [aquí](http://example.com/ "Title").
+Enunciado de la prueba [aqui](http://example.com/ "Title").
 
 Con el objetivo de poder fundamentar las decisiones tomadas durante la implementación de la propuesta de solución se propone dividir la explicación de las acciones realizadas en las siguientes capas o elementos de la arquitectura.
 
@@ -29,13 +29,13 @@ En la capa de Acceso a Datos se establecieron las relaciones entre entidades seg
 
 - Antes
 
-  `   `private Boolean isEnabled=true;
+  private Boolean isEnabled=true;
 
 - Después 
 
 @Column(columnDefinition = "boolean default true")
 
-`   `private Boolean isEnabled
+private Boolean isEnabled
 
 
 - Se hizo uso del ciclo de vida de los eventos JPA para darle valor a las variables **createdDate** y **lastModifiedDate**.
@@ -78,12 +78,11 @@ En la figura 3 se ilustra cómo se organizó la solución para cumplir con los o
 
 - El servicio Waste- Manager que responde a la lógica del negocio en este caso.
 
-- ` `Se configuró un Api-Gateway como Load Balancer y Enrutador de las peticiones HTTP. Debido a la importancia que reviste la seguridad en sistema de Software se implemento un filtro a este MS que valida un token de seguridad para todas las peticiones.
+- Se configuró un Api-Gateway como Load Balancer y Enrutador de las peticiones HTTP. Debido a la importancia que reviste la seguridad en sistema de Software se implemento un filtro a este MS que valida un token de seguridad para todas las peticiones.
 
-  \*\*Aclarar que por cuestión de tiempo no se llegó a implementar el MS que implementa la seguridad, solo se ilustró como se considera que debía de implementar a futuro. Es por eso que actualmente el filtro del Api Gateway solo validad que exista el token en la petición.  
+  **Aclarar que por cuestión de tiempo no se llegó a implementar el MS que implementa la seguridad, solo se ilustró como se considera que debía de implementar a futuro. Es por eso que actualmente el filtro del Api Gateway solo validad que exista el token en la petición.  
 
 ![](assets/Aspose.Words.9b4f8f52-21fc-49a4-96df-26565c32e062.003.png)
-
 *Fig3.Arquitectura de MS*
 
 
@@ -94,18 +93,22 @@ Para poder ejecutar la aplicación y probar su funcionamiento se puede realizar 
 1. **Descargar el código del repositorio y ejecutar cada servicio en el siguiente orden**
 
 1. Cloud config server
-1. ` `Eureka
-1. ` `Waste Manager
+1. Eureka
+1. Waste Manager
 1. Api Gateway
 
 
 1. **Descargar el código del repositorio la carpeta *deploy* y ejecutar el Docker-compose.**
 
-   \*\*Tener presente que la aplicación utiliza los siguientes puertos:
+- \*\*Antes de correr el archivo compose (compose-spring.yml) se debe de crear una carpeta target dentro de la carpeta DockerFile, dentro poner las compilaciones de cada uno de los microservicios, esto se hace ejecutando el comando ***mvn clean package***.
 
-   `    `*Cloud config server: 6060, Eureka: 8761, Waste Manager( No se especifica Puerto para poder levantar varias instancias ),   Api Gateway(9090)*
+![](assets/Aspose.Words.cf8c3c9c-25ef-4660-b299-fb2ccf48451a.004.png)
 
+\*\*Tener presente que la aplicación utiliza los siguientes puertos:
 
+`    `*Cloud config server: 6060, Eureka: 8761, Waste Manager( No se especifica Puerto para poder levantar varias instancias ),   Api Gateway(9090)*
+
+![](assets/Aspose.Words.cf8c3c9c-25ef-4660-b299-fb2ccf48451a.005.png)
 
 **Concusiones**
 
@@ -115,9 +118,6 @@ Se considera que se cumplió con los objetivos propuestos la prueba técnica y s
 
 Se recomienda:
 
-Realizar las pruebas correspondientes al códico, utilizando Junit y Mockito.
+- Realizar las pruebas correspondientes al códico, utilizando Junit y 
 
-Implementar las acciones de seguridad mencionadas anteriormente.
-
-
-
+- Mockito.Implementar las acciones de seguridad mencionadas anteriormente.
