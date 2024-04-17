@@ -1,0 +1,4 @@
+FROM openjdk17
+VOLUME /tmp
+COPY target/cloud-config-0.0.1-SNAPSHOT.jar cloud-config.jar
+ENTRYPOINT ["java","-jar","/cloud-config.jar"]

@@ -1,0 +1,46 @@
+version: '1'
+
+networks:
+  waste-manager:
+    driver: bridge
+    name: waste-manager
+
+services:
+  cloud-config:
+    container_name: cloud-config
+    build:
+      context: DockerFile
+      dockerfile: Dockerfile-cloudconfig
+    image: cloud-config:latest
+    ports:
+      - 6060:6060
+    networks:
+      - waste-manager
+  discovery:
+    container_name: eureka
+    build:
+      context: DockerFile
+      dockerfile: Dockerfile-eureka
+    image: eureka:latest
+    ports:
+      - 8761:8761
+    networks:
+      - waste-manager
+  waste-manager:
+    container_name: waste-manager
+    build:
+      context: DockerFile
+      dockerfile: Dockerfile-waste
+    image: waste-manager:latest
+    networks:
+      - waste-manager
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: DockerFile
+      dockerfile: Dockerfile-apigateway
+    image: api-gateway:latest
+    ports:
+      - 9090:9090
+    networks:
+      - waste-manager
