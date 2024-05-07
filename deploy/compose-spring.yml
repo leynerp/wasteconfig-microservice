@@ -7,39 +7,39 @@ networks:
 
 services:
   cloud-config:
-    container_name: cloud-config
+    container_name: c-cloud-config
     build:
       context: DockerFile
       dockerfile: Dockerfile-cloudconfig
-    image: cloud-config:latest
+    image: i-cloud-config:latest
     ports:
       - 6060:6060
     networks:
       - waste-manager
   discovery:
-    container_name: eureka
+    container_name: c-eureka
     build:
       context: DockerFile
       dockerfile: Dockerfile-eureka
-    image: eureka:latest
+    image: i-eureka:latest
     ports:
       - 8761:8761
     networks:
       - waste-manager
   waste-manager:
-    container_name: waste-manager
+    container_name: c-waste-manager
     build:
       context: DockerFile
       dockerfile: Dockerfile-waste
-    image: waste-manager:latest
+    image: i-waste-manager:latest
     networks:
       - waste-manager
   api-gateway:
-    container_name: api-gateway
+    container_name: c-api-gateway
     build:
       context: DockerFile
       dockerfile: Dockerfile-apigateway
-    image: api-gateway:latest
+    image: i-api-gateway:latest
     ports:
       - 9090:9090
     networks:
