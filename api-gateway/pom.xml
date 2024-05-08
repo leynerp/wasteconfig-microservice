@@ -59,6 +59,19 @@
 				<build.profile.id>dev</build.profile.id>
 				<profileActive>dev</profileActive>
 			</properties>
+			<build>
+				<resources>
+					<resource>
+						<directory>
+							src/main/resources
+						</directory>
+						<filtering>true</filtering>
+						<excludes>
+							<exclude>application-prod.properties</exclude>
+						</excludes>
+					</resource>
+				</resources>
+			</build>
 		</profile>
 		<profile>
 			<id>prod</id>
@@ -69,6 +82,19 @@
 				<build.profile.id>prod</build.profile.id>
 				<profileActive>prod</profileActive>
 			</properties>
+			<build>
+				<resources>
+					<resource>
+						<directory>
+							src/main/resources
+						</directory>
+						<filtering>true</filtering>
+						<excludes>
+							<exclude>application-dev.properties</exclude>
+						</excludes>
+					</resource>
+				</resources>
+			</build>
 		</profile>
 	</profiles>
 
